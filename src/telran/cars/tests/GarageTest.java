@@ -35,7 +35,6 @@ class GarageTest {
 		assertFalse(garage.addCar(cars[1]));
 		Car newCar = new Car("1238", "308", "Peugeot", 2.0, "black");
 		assertTrue(garage.addCar(newCar));
-		assertEquals(6, garage.quantity());
 		assertEquals(newCar, garage.findCarByRegNumber("1238"));
 		assertFalse(garage.addCar(new Car("1239", "308", "Peugeot", 2.0, "black")));
 	}
@@ -43,9 +42,7 @@ class GarageTest {
 	@Test
 	void testRemoveCar() {
 		assertNull(garage.removeCar("1"));
-		assertEquals(5, garage.quantity());
 		assertEquals(cars[0], garage.removeCar("123"));
-		assertEquals(4, garage.quantity());
 	}
 
 	@Test
@@ -79,7 +76,7 @@ class GarageTest {
 
 	@Test
 	void findCarsByColors() {
-		Car[] actual = garage.findCarsByColors("red");
+		Car[] actual = garage.findCarsByColor("red");
 		Car[] expected = { cars[0], cars[4] };
 		assertArrayEquals(expected, actual);
 	}

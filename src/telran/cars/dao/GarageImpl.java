@@ -23,7 +23,7 @@ public class GarageImpl implements Garage {
 	@Override
 	public Car removeCar(String regNumber) {
 		for (int i = 0; i < size; i++) {
-			if (cars[i].getRegNumber() == regNumber) {
+			if (cars[i].getRegNumber().equals(regNumber)) {
 				Car victim = cars[i];
 				cars[i] = cars[--size];
 				cars[size] = null;
@@ -36,7 +36,7 @@ public class GarageImpl implements Garage {
 	@Override
 	public Car findCarByRegNumber(String regNumber) {
 		for (int i = 0; i < size; i++) {
-			if (cars[i].getRegNumber() == regNumber) {
+			if (cars[i].getRegNumber().equals(regNumber)) {
 				return cars[i];
 			}
 		}
@@ -47,13 +47,13 @@ public class GarageImpl implements Garage {
 	public Car[] findCarsByModel(String model) {
 		int count = 0;
 		for (int i = 0; i < size; i++) {
-			if (cars[i].getModel() == model) {
+			if (cars[i].getModel().equals(model)) {
 				count++;
 			}
 		}
 		Car[] res = new Car[count];
 		for (int i = 0, j = 0; j < res.length; i++) {
-			if (cars[i].getModel() == model) {
+			if (cars[i].getModel().equals(model)) {
 				res[j++] = cars[i];
 			}
 		}
@@ -64,13 +64,13 @@ public class GarageImpl implements Garage {
 	public Car[] findCarsByCompany(String company) {
 		int count = 0;
 		for (int i = 0; i < size; i++) {
-			if (cars[i].getCompany() == company) {
+			if (cars[i].getCompany().equals(company)) {
 				count++;
 			}
 		}
 		Car[] res = new Car[count];
 		for (int i = 0, j = 0; j < res.length; i++) {
-			if (cars[i].getCompany() == company) {
+			if (cars[i].getCompany().equals(company)) {
 				res[j++] = cars[i];
 			}
 		}
@@ -95,24 +95,20 @@ public class GarageImpl implements Garage {
 	}
 
 	@Override
-	public Car[] findCarsByColors(String color) {
+	public Car[] findCarsByColor(String color) {
 		int count = 0;
 		for (int i = 0; i < size; i++) {
-			if (cars[i].getColor() == color) {
+			if (cars[i].getColor().equals(color)) {
 				count++;
 			}
 		}
 		Car[] res = new Car[count];
 		for (int i = 0, j = 0; j < res.length; i++) {
-			if (cars[i].getColor() == color) {
+			if (cars[i].getColor().equals(color)) {
 				res[j++] = cars[i];
 			}
 		}
 		return res;
 	}
 
-	@Override
-	public int quantity() {
-		return size;
-	}
 }

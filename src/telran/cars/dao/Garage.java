@@ -3,6 +3,7 @@ package telran.cars.dao;
 import telran.cars.model.Car;
 
 public interface Garage {
+	
 	boolean addCar(Car car);
 
 	Car removeCar(String regNumber);
@@ -15,8 +16,6 @@ public interface Garage {
 
 	Car[] findCarsByEngine(double min, double max);
 
-	Car[] findCarsByColors(String color);
-
-	int quantity();
+	Car[] findCarsByColor(String color);
 
 }
