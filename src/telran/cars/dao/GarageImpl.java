@@ -24,15 +24,7 @@ public class GarageImpl implements Garage {
 
 	@Override
 	public Car removeCar(String regNumber) {
-		for (int i = 0; i < size; i++) {
-			if (cars[i].getRegNumber().equals(regNumber)) {
-				Car victim = cars[i];
-				cars[i] = cars[--size];
-				cars[size] = null;
-				return victim;
-			}
-		}
-		return null;
+		return removeCarByPredicate(c -> c.getRegNumber().equals(regNumber));
 	}
 
 	@Override
@@ -52,7 +44,7 @@ public class GarageImpl implements Garage {
 
 	@Override
 	public Car[] findCarsByEngine(double min, double max) {
-		return findCarsByPredicate(c -> c.getEngine() >= min && c.getEngine() < max );
+		return findCarsByPredicate(c -> c.getEngine() >= min && c.getEngine() < max);
 	}
 
 	@Override
@@ -75,6 +67,7 @@ public class GarageImpl implements Garage {
 		}
 		return res;
 	}
+
 	private Car findCarByPredicate(Predicate<Car> predicate) {
 		Car res = null;
 		for (int i = 0; i < size; i++) {
@@ -83,7 +76,17 @@ public class GarageImpl implements Garage {
 			}
 		}
 		return res;
-
+	}
+	private Car removeCarByPredicate(Predicate<Car> predicate) {
+		for (int i = 0; i < size; i++) {
+			if (predicate.test(cars[i])) {
+				Car victim = cars[i];
+				cars[i] = cars[--size];
+				cars[size] = null;
+				return victim;
+			}
+		}
+		return null;
 	}
 
 }
